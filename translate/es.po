@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.magicfolder\n"
 "Report-Msgid-Bugs-To: https://github.com/osdaeg/magic-folder\n"
 "POT-Creation-Date: 2026-08-16 15:18+0200\n"
-"PO-Revision-Date: 2026-08-16 12:00+0200\n"
+"PO-Revision-Date: 2026-08-16 15:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -29,27 +29,27 @@ msgstr "General"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Notifications:"
-msgstr ""
+msgstr "Notificaciones:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Show notification after each operation"
-msgstr ""
+msgstr "Mostrar notificación luego de cada operación"
 
 #: ../contents/ui/configGeneral.qml
 msgid "If the file already exists:"
-msgstr ""
+msgstr "Si el archivo ya existe:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Skip (do not move)"
-msgstr ""
+msgstr "Omitir (no mover)"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Keep both (rename: [filename]_1.ext)"
-msgstr ""
+msgstr "Mantener ambos (renombrar: [archivo]_1.ext)"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Overwrite"
-msgstr ""
+msgstr "Sobreescribir"
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
@@ -57,104 +57,109 @@ msgid ""
 "Carefully check the rules and destination folders before using them with "
 "important files."
 msgstr ""
+"⚠  Los archivos se mueven de forma permanente.\n"
+"Verificá bien las reglas y carpetas destino antes de usarlas con archivos "
+"importantes."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Restore default rules"
-msgstr ""
+msgstr "Restaurar reglas predeterminadas"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Restore default rules?"
-msgstr ""
+msgstr "¿Restaurar reglas predeterminadas?"
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
 "This will remove all custom rules and restore the 9 predefined categories "
 "(disabled). Continue?"
 msgstr ""
+"Esto eliminará todas las reglas personalizadas y restaurará las 9 categorías "
+"predefinidas (desactivadas). ¿Continuar?"
 
 #: ../contents/ui/configRules.qml
 msgid "Add rule"
-msgstr ""
+msgstr "Agregar regla"
 
 #: ../contents/ui/configRules.qml
 msgid "There are no set rules."
-msgstr ""
+msgstr "No hay reglas definidas"
 
 #: ../contents/ui/configRules.qml
 msgid "Click \"Add rule\" to get started."
-msgstr ""
+msgstr "Hacé clic en \\\"Agregar regla\\\" para comenzar"
 
 #: ../contents/ui/configRules.qml
 msgid "Set up a destination folder first."
-msgstr ""
+msgstr "Configurá una carpeta destino primero"
 
 #: ../contents/ui/configRules.qml
 msgid "Deactivate"
-msgstr ""
+msgstr "Desactivar"
 
 #: ../contents/ui/configRules.qml ../contents/ui/main.qml
 msgid "Activate"
-msgstr ""
+msgstr "Activar"
 
 #: ../contents/ui/configRules.qml
 msgid "⚠ No destination folder — click Edit"
-msgstr ""
+msgstr "⚠ Sin carpeta destino — hacé clic en editar"
 
 #: ../contents/ui/configRules.qml
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: ../contents/ui/configRules.qml
 msgid "Go up"
-msgstr ""
+msgstr "Subir"
 
 #: ../contents/ui/configRules.qml
 msgid "Lower"
-msgstr ""
+msgstr "Bajar"
 
 #: ../contents/ui/configRules.qml
 msgid "Eliminate"
-msgstr ""
+msgstr "Eliminar"
 
 #: ../contents/ui/configRules.qml
 msgid "Edit rule"
-msgstr ""
+msgstr "Editar regla"
 
 #: ../contents/ui/configRules.qml
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: ../contents/ui/configRules.qml
 msgid "E.g.: Videos"
-msgstr ""
+msgstr "Ej: Vídeos"
 
 #: ../contents/ui/configRules.qml
 msgid "Extensions:"
-msgstr ""
+msgstr "Extensiones:"
 
 #: ../contents/ui/configRules.qml
 msgid "mp4, mkv, avi"
-msgstr ""
+msgstr "mp4, mkv, avi"
 
 #: ../contents/ui/configRules.qml
 msgid "Destination folder:"
-msgstr ""
+msgstr "Carpeta destino:"
 
 #: ../contents/ui/configRules.qml
-msgid "/home/user/Videos"
-msgstr ""
+msgid "/home/[username]/Videos"
+msgstr "/home/[usuario]/Vídeos"
 
 #: ../contents/ui/configRules.qml
 msgid "Explore…"
-msgstr ""
+msgstr "Explorar…"
 
 #: ../contents/ui/configRules.qml
 msgid "Icon (optional):"
-msgstr ""
+msgstr "Ícono (opcional):"
 
 #: ../contents/ui/configRules.qml
 msgid "video-x-generic"
-msgstr ""
+msgstr "video-x-generic"
 
 #: ../contents/ui/configRules.qml
 msgid ""
@@ -162,55 +167,58 @@ msgid ""
 "office-document · application-zip · text-x-script · application-x-executable "
 "· application-epub+zip"
 msgstr ""
+"Íconos sugeridos: video-x-generic · audio-x-generic · image-x-generic · x-"
+"office-document · application-zip · text-x-script · application-x-executable "
+"· application-epub+zip"
 
 #: ../contents/ui/main.qml
 msgid "Video"
-msgstr ""
+msgstr "Vídeo"
 
 #: ../contents/ui/main.qml
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../contents/ui/main.qml
 msgid "Images"
-msgstr ""
+msgstr "Imágenes"
 
 #: ../contents/ui/main.qml
 msgid "Documents"
-msgstr ""
+msgstr "Documentos"
 
 #: ../contents/ui/main.qml
 msgid "Ebooks"
-msgstr ""
+msgstr "Ebooks"
 
 #: ../contents/ui/main.qml
 msgid "Archives"
-msgstr ""
+msgstr "Archivos comprimidos"
 
 #: ../contents/ui/main.qml
 msgid "APKs"
-msgstr ""
+msgstr "APKs"
 
 #: ../contents/ui/main.qml
 msgid "Source code"
-msgstr ""
+msgstr "Código fuente"
 
 #: ../contents/ui/main.qml
 msgid "Binaris"
-msgstr ""
+msgstr "Binarios"
 
 #: ../contents/ui/main.qml
 msgid "Configure Magic Folder…"
-msgstr ""
+msgstr "Configurar Magic Folder…"
 
 #: ../contents/ui/main.qml
 msgid "Drop files onto the panel icon to move them automatically."
-msgstr ""
+msgstr "Soltá archivos sobre el ícono del panel para moverlos automáticamente."
 
 #: ../contents/ui/main.qml
 msgid "Active rules: %1 of %2"
-msgstr ""
+msgstr "Reglas activas: %1 de %2"
 
 #: ../contents/ui/main.qml
 msgid "Configure rules…"
-msgstr ""
+msgstr "Configurar reglas…"
