@@ -6,14 +6,14 @@
                 "Name": "Magic Folder"
             }
         ],
+        "Id": "org.kde.plasma.magicfolder",
         "Category": "Utilities",
         "Description": "Drop files to automatically move them to predefined folders based on extension or MIME type rules.",
         "Icon": "folder-symbolic",
-        "Id": "org.kde.plasma.magicfolder",
         "License": "GPL-3.0-or-later",
         "Name": "Magic Folder",
         "Version": "1.0",
-        "Website": ""
+        "Website": "https://github.com/osdaeg/magic-folder"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
 }
