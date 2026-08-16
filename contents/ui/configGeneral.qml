@@ -19,20 +19,20 @@ Kirigami.ScrollablePage {
         Kirigami.FormLayout {
 
             QQC2.CheckBox {
-                Kirigami.FormData.label: i18n("Notificaciones:")
-                text: i18n("Mostrar notificación luego de cada operación")
+                Kirigami.FormData.label: i18n("Notifications:")
+                text: i18n("Show notification after each operation")
                 checked: cfg_showNotifications
                 onToggled: cfg_showNotifications = checked
             }
 
             // Conflict strategy — default index 1 = "Mantener ambos"
             QQC2.ComboBox {
-                Kirigami.FormData.label: i18n("Si el archivo ya existe:")
+                Kirigami.FormData.label: i18n("If the file already exists:")
                 // 0 = Omitir, 1 = Mantener ambos (renombrar), 2 = Sobreescribir
                 model: [
-                    i18n("Omitir (no mover)"),
-                    i18n("Mantener ambos (renombrar: archivo_1.ext)"),
-                    i18n("Sobreescribir")
+                    i18n("Skip (do not move)"),
+                    i18n("Keep both (rename: [filename]_1.ext)"),
+                    i18n("Overwrite")
                 ]
                 currentIndex: cfg_conflictStrategy
                 onActivated: cfg_conflictStrategy = currentIndex
@@ -44,27 +44,27 @@ Kirigami.ScrollablePage {
         Kirigami.InlineMessage {
             Layout.fillWidth: true
             type: Kirigami.MessageType.Warning
-            text: i18n("⚠  Los archivos se mueven de forma permanente. Verificá bien las reglas y carpetas destino antes de usarlas con archivos importantes.")
+            text: i18n("⚠  Files are moved permanently.\nCarefully check the rules and destination folders before using them with important files.")
             visible: true
         }
 
         // Reset to defaults button
         QQC2.Button {
-            text: i18n("Restaurar reglas predeterminadas")
+            text: i18n("Restore default rules")
             icon.name: "edit-reset"
             onClicked: resetDialog.open()
         }
 
         Kirigami.Dialog {
             id: resetDialog
-            title: i18n("¿Restaurar reglas predeterminadas?")
+            title: i18n("Restore default rules?")
             standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
             onAccepted: {
                 // Clear rules so initRules() seeds defaults on next load
                 plasmoid.configuration.rules = ""
             }
             QQC2.Label {
-                text: i18n("Esto eliminará todas las reglas personalizadas y restaurará las 9 categorías predefinidas (desactivadas). ¿Continuar?")
+                text: i18n("This will remove all custom rules and restore the 9 predefined categories (disabled). Continue?")
                 wrapMode: Text.WordWrap
                 width: Kirigami.Units.gridUnit * 22
             }

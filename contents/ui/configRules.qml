@@ -43,7 +43,7 @@ Kirigami.ScrollablePage {
 
     actions: [
         Kirigami.Action {
-            text: i18n("Agregar regla")
+            text: i18n("Add rule")
             icon.name: "list-add"
             onTriggered: ruleDialog.openNew()
         }
@@ -61,8 +61,8 @@ Kirigami.ScrollablePage {
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
             visible: rulesModel.count === 0
-            text: i18n("No hay reglas definidas")
-            explanation: i18n("Hacé clic en \"Agregar regla\" para comenzar")
+            text: i18n("There are no set rules.")
+            explanation: i18n("Click \"Add rule\" to get started.")
             icon.name: "folder-symbolic"
         }
 
@@ -85,8 +85,8 @@ Kirigami.ScrollablePage {
                     QQC2.ToolTip {
                         visible: ruleSwitch.hovered
                         text: model.destination === ""
-                            ? i18n("Configurá una carpeta destino primero")
-                            : (ruleSwitch.checked ? i18n("Desactivar") : i18n("Activar"))
+                            ? i18n("Set up a destination folder first.")
+                            : (ruleSwitch.checked ? i18n("Deactivate") : i18n("Activate"))
                     }
                 }
 
@@ -112,7 +112,7 @@ Kirigami.ScrollablePage {
                     QQC2.Label {
                         text: model.destination !== ""
                             ? model.destination
-                            : i18n("⚠ Sin carpeta destino — hacé clic en editar")
+                            : i18n("⚠ No destination folder — click Edit")
                         color: model.destination !== ""
                             ? Kirigami.Theme.textColor
                             : Kirigami.Theme.neutralTextColor
@@ -135,24 +135,24 @@ Kirigami.ScrollablePage {
             actions: [
                 Kirigami.Action {
                     icon.name: "edit-entry"
-                    text: i18n("Editar")
+                    text: i18n("Edit")
                     onTriggered: ruleDialog.openEdit(index)
                 },
                 Kirigami.Action {
                     icon.name: "arrow-up"
-                    text: i18n("Subir")
+                    text: i18n("Go up")
                     enabled: index > 0
                     onTriggered: { rulesModel.move(index, index - 1, 1); saveToConfig() }
                 },
                 Kirigami.Action {
                     icon.name: "arrow-down"
-                    text: i18n("Bajar")
+                    text: i18n("Lower")
                     enabled: index < rulesModel.count - 1
                     onTriggered: { rulesModel.move(index, index + 1, 1); saveToConfig() }
                 },
                 Kirigami.Action {
                     icon.name: "edit-delete"
-                    text: i18n("Eliminar")
+                    text: i18n("Eliminate")
                     onTriggered: { rulesModel.remove(index); saveToConfig() }
                 }
             ]
@@ -165,7 +165,7 @@ Kirigami.ScrollablePage {
 
         property int editIndex: -1
 
-        title: editIndex === -1 ? i18n("Agregar regla") : i18n("Editar regla")
+        title: editIndex === -1 ? i18n("Add rule") : i18n("Edit rule")
         preferredWidth: Kirigami.Units.gridUnit * 30
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
 
@@ -214,45 +214,45 @@ Kirigami.ScrollablePage {
 
                 QQC2.TextField {
                     id: nameField
-                    Kirigami.FormData.label: i18n("Nombre:")
-                    placeholderText: i18n("Ej: Vídeos")
+                    Kirigami.FormData.label: i18n("Name:")
+                    placeholderText: i18n("E.g.: Videos")
                     Layout.fillWidth: true
                 }
 
                 QQC2.TextField {
                     id: patternField
-                    Kirigami.FormData.label: i18n("Extensiones:")
+                    Kirigami.FormData.label: i18n("Extensions:")
                     placeholderText: i18n("mp4, mkv, avi")
                     Layout.fillWidth: true
                 }
 
                 RowLayout {
-                    Kirigami.FormData.label: i18n("Carpeta destino:")
+                    Kirigami.FormData.label: i18n("Destination folder:")
                     Layout.fillWidth: true
 
                     QQC2.TextField {
                         id: destinationField
-                        placeholderText: i18n("/home/usuario/Vídeos")
+                        placeholderText: i18n("/home/[username]/Videos")
                         Layout.fillWidth: true
                     }
 
                     QQC2.Button {
                         icon.name: "folder-open"
-                        text: i18n("Explorar…")
+                        text: i18n("Explore…")
                         onClicked: folderDialog.open()
                     }
                 }
 
                 QQC2.TextField {
                     id: iconField
-                    Kirigami.FormData.label: i18n("Ícono (opcional):")
+                    Kirigami.FormData.label: i18n("Icon (optional):")
                     placeholderText: i18n("video-x-generic")
                     Layout.fillWidth: true
                 }
             }
 
             QQC2.Label {
-                text: i18n("Íconos sugeridos: video-x-generic · audio-x-generic · image-x-generic · x-office-document · application-zip · text-x-script · application-x-executable · application-epub+zip")
+                text: i18n("Suggested icons: video-x-generic · audio-x-generic · image-x-generic · x-office-document · application-zip · text-x-script · application-x-executable · application-epub+zip")
                 wrapMode: Text.WordWrap
                 opacity: 0.6
                 Layout.fillWidth: true

@@ -12,15 +12,15 @@ PlasmoidItem {
 
     // ── Reglas predefinidas ───────────────────────────────────────────────────
     readonly property var defaultRules: [
-        { name: "Vídeo",                matchType: "extension", pattern: "mp4, avi, mkv, mov, wmv, flv, webm, m4v, 3gp, ts",                                                                                                                                             destination: "", enabled: false, icon: "video-x-generic" },
-        { name: "Audio",                matchType: "extension", pattern: "mp3, flac, wav, aac, ogg, m4a, wma, opus, aiff",                                                                                                                                                destination: "", enabled: false, icon: "audio-x-generic" },
-        { name: "Imágenes",             matchType: "extension", pattern: "jpg, jpeg, png, gif, webp, bmp, tiff, heic, svg, raw",                                                                                                                                          destination: "", enabled: false, icon: "image-x-generic" },
-        { name: "Documentos",           matchType: "extension", pattern: "pdf, doc, docx, xls, xlsx, ppt, pptx, txt, odt, ods, odp, rtf, csv",                                                                                                                           destination: "", enabled: false, icon: "x-office-document" },
-        { name: "Ebooks",               matchType: "extension", pattern: "epub, mobi, azw, azw3, fb2, djvu",                                                                                                                                                              destination: "", enabled: false, icon: "application-epub+zip" },
-        { name: "Archivos comprimidos", matchType: "extension", pattern: "zip, rar, 7z, tar, gz, bz2, xz",                                                                                                                                                               destination: "", enabled: false, icon: "application-zip" },
-        { name: "APKs",                 matchType: "extension", pattern: "apk, xapk, apks",                                                                                                                                                                              destination: "", enabled: false, icon: "application-vnd.android.package-archive" },
-        { name: "Código fuente",        matchType: "extension", pattern: "py, sh, bash, c, cpp, h, hpp, kt, kts, java, js, ts, html, css, xml, json, yaml, yml, toml, ini, cfg, conf, sql, rb, php, swift, go, rs, lua, r, m, cs, vb, dart, gradle",                   destination: "", enabled: false, icon: "text-x-script" },
-        { name: "Binarios",             matchType: "extension", pattern: "exe, msi, dmg, pkg, deb, rpm, appimage, run, bin, out, elf, so, dll, jar, war",                                                                                                                destination: "", enabled: false, icon: "application-x-executable" }
+        { name: i18n("Video"),                matchType: "extension", pattern: "mp4, avi, mkv, mov, wmv, flv, webm, m4v, 3gp, ts",                                                                                                                          destination: "", enabled: false, icon: "video-x-generic" },
+        { name: i18n("Audio"),                matchType: "extension", pattern: "mp3, flac, wav, aac, ogg, m4a, wma, opus, aiff",                                                                                                                            destination: "", enabled: false, icon: "audio-x-generic" },
+        { name: i18n("Images"),               matchType: "extension", pattern: "jpg, jpeg, png, gif, webp, bmp, tiff, heic, svg, raw",                                                                                                                      destination: "", enabled: false, icon: "image-x-generic" },
+        { name: i18n("Documents"),            matchType: "extension", pattern: "pdf, doc, docx, xls, xlsx, ppt, pptx, txt, odt, ods, odp, rtf, csv",                                                                                                        destination: "", enabled: false, icon: "x-office-document" },
+        { name: i18n("Ebooks"),               matchType: "extension", pattern: "epub, mobi, azw, azw3, fb2, djvu",                                                                                                                                          destination: "", enabled: false, icon: "application-epub+zip" },
+        { name: i18n("Archives"),             matchType: "extension", pattern: "zip, rar, 7z, tar, gz, bz2, xz",                                                                                                                                            destination: "", enabled: false, icon: "application-zip" },
+        { name: i18n("APKs"),                 matchType: "extension", pattern: "apk, xapk, apks",                                                                                                                                                           destination: "", enabled: false, icon: "application-vnd.android.package-archive" },
+        { name: i18n("Source code"),          matchType: "extension", pattern: "py, sh, bash, c, cpp, h, hpp, kt, kts, java, js, ts, html, css, xml, json, yaml, yml, toml, ini, cfg, conf, sql, rb, php, swift, go, rs, lua, r, m, cs, vb, dart, gradle",  destination: "", enabled: false, icon: "text-x-script" },
+        { name: i18n("Binaris"),              matchType: "extension", pattern: "exe, msi, dmg, pkg, deb, rpm, appimage, run, bin, out, elf, so, dll, jar, war",                                                                                             destination: "", enabled: false, icon: "application-x-executable" }
     ]
 
     // ── Compact (ícono del panel) ─────────────────────────────────────────────
@@ -63,14 +63,14 @@ PlasmoidItem {
             acceptedButtons: Qt.RightButton
             onClicked: (mouse) => {
                 if (mouse.button === Qt.RightButton)
-                    contextMenu.open(mouse.x, mouse.y)
+                    contextMenu.open()
             }
         }
 
         PlasmaComponents.Menu {
             id: contextMenu
             PlasmaComponents.MenuItem {
-                text: i18n("Configurar Magic Folder…")
+                text: i18n("Configure Magic Folder…")
                 icon.name: "configure"
                 onClicked: plasmoid.internalAction("configure").trigger()
             }
@@ -94,7 +94,7 @@ PlasmoidItem {
             }
 
             PlasmaComponents.Label {
-                text: i18n("Soltá archivos sobre el ícono del panel para moverlos automáticamente.")
+                text: i18n("Drop files onto the panel icon to move them automatically.")
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
@@ -104,7 +104,7 @@ PlasmoidItem {
                     var active = 0
                     for (var i = 0; i < rulesModel.count; i++)
                         if (rulesModel.get(i).enabled) active++
-                    return i18n("Reglas activas: %1 de %2", active, rulesModel.count)
+                    return i18n("Active rules: %1 of %2", active, rulesModel.count)
                 }
                 opacity: 0.7
             }
@@ -112,7 +112,7 @@ PlasmoidItem {
             Item { Layout.fillHeight: true }
 
             PlasmaComponents.Button {
-                text: i18n("Configurar reglas…")
+                text: i18n("Configure rules…")
                 icon.name: "configure"
                 Layout.alignment: Qt.AlignRight
                 onClicked: plasmoid.internalAction("configure").trigger()
@@ -185,7 +185,8 @@ PlasmoidItem {
     function showNotification(message, hasErrors) {
         var icon = hasErrors ? "dialog-warning" : "folder-symbolic"
         // Escapamos el mensaje para passarlo como argumento
-        var safeMsg = message.replace(/\\/g, "\\\\").replace(/"/g, '\\"')
+        var safeMsg = message.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+
         notifSource.connectSource(
             "notify-send --icon=" + icon + " --app-name=MagicFolder --expire-time=4000 \"Magic Folder\" \"" + safeMsg + "\""
         )
@@ -239,7 +240,10 @@ PlasmoidItem {
         }
     }
 
-    Component.onCompleted: initRules()
+    Component.onCompleted: {
+        initRules()
+                  
+    }
 
     Connections {
         target: plasmoid.configuration
