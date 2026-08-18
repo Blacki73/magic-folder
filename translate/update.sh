@@ -167,61 +167,6 @@ for cat in $catalogs; do
 done
 echoGray "[translate/merge] Done merging messages"
 
-#---
-echoGray "[translate/merge] Updating .desktop file"
-
-# Generate LINGUAS for msgfmt
-if [ -f "$DIR/LINGUAS" ]; then
-	rm "$DIR/LINGUAS"
-fi
-touch "$DIR/LINGUAS"
-for cat in $catalogs; do
-	catLocale=`basename ${cat%.*}`
-	echo "${catLocale}" >> "$DIR/LINGUAS"
-done
-
-cp -f "$DIR/../metadata.desktop" "$DIR/template.desktop"
-sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/template.desktop"
-
-msgfmt \
-	--desktop \
-	--template="$DIR/template.desktop" \
-	-d "$DIR/" \
-	-o "$DIR/new.desktop"
-
-# Delete empty msgid messages that used the po header
-if [ ! -z "$(grep '^Name=$' "$DIR/new.desktop")" ]; then
-	echo "[translate/merge] Name in metadata.desktop is empty!"
-	sed -i '/^Name\[/ d' "$DIR/new.desktop"
-fi
-if [ ! -z "$(grep '^GenericName=$' "$DIR/new.desktop")" ]; then
-	echo "[translate/merge] GenericName in metadata.desktop is empty!"
-	sed -i '/^GenericName\[/ d' "$DIR/new.desktop"
-fi
-if [ ! -z "$(grep '^Comment=$' "$DIR/new.desktop")" ]; then
-	echo "[translate/merge] Comment in metadata.desktop is empty!"
-	sed -i '/^Comment\[/ d' "$DIR/new.desktop"
-fi
-if [ ! -z "$(grep '^Keywords=$' "$DIR/new.desktop")" ]; then
-	echo "[translate/merge] Keywords in metadata.desktop is empty!"
-	sed -i '/^Keywords\[/ d' "$DIR/new.desktop"
-fi
-
-# Place translations at the bottom of the desktop file.
-translatedLines=`cat "$DIR/new.desktop" | grep "]="`
-if [ ! -z "${translatedLines}" ]; then
-	sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/new.desktop"
-	if [ "$(tail -c 2 "$DIR/new.desktop" | wc -l)" != "2" ]; then
-		# Does not end with 2 empty lines, so add an empty line.
-		echo "" >> "$DIR/new.desktop"
-	fi
-	echo "${translatedLines}" >> "$DIR/new.desktop"
-fi
-
-# Cleanup
-mv "$DIR/new.desktop" "$DIR/../metadata.desktop"
-rm "$DIR/template.desktop"
-rm "$DIR/LINGUAS"
 
 #---
 # Populate ReadMe.md
