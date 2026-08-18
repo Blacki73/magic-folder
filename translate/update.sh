@@ -1,5 +1,4 @@
 #!/bin/bash
-# Version: 23
 
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 # https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems/Outside_KDE_repositories

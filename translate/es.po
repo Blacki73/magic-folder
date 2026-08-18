@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.magicfolder\n"
 "Report-Msgid-Bugs-To: https://github.com/osdaeg/magic-folder\n"
-"POT-Creation-Date: 2026-08-16 15:18+0200\n"
+"POT-Creation-Date: 2026-08-17 11:43+0200\n"
 "PO-Revision-Date: 2026-08-16 15:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -97,7 +97,7 @@ msgstr "Configurá una carpeta destino primero"
 msgid "Deactivate"
 msgstr "Desactivar"
 
-#: ../contents/ui/configRules.qml ../contents/ui/main.qml
+#: ../contents/ui/configRules.qml
 msgid "Activate"
 msgstr "Activar"
 

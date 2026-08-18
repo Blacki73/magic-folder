@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: magicfolder\n"
 "Report-Msgid-Bugs-To: https://github.com/osdaeg/magic-folder\n"
-"POT-Creation-Date: 2026-08-16 15:18+0200\n"
+"POT-Creation-Date: 2026-08-17 11:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: ../contents/ui/configRules.qml ../contents/ui/main.qml
+#: ../contents/ui/configRules.qml
 msgid "Activate"
 msgstr ""
 
@@ -136,7 +136,7 @@ msgid "Destination folder:"
 msgstr ""
 
 #: ../contents/ui/configRules.qml
-msgid "/home/user/Videos"
+msgid "/home/[username]/Videos"
 msgstr ""
 
 #: ../contents/ui/configRules.qml
