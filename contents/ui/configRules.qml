@@ -3,7 +3,8 @@ import QtQuick.Controls as QQC2
 import QtQuick.Layouts
 import QtQuick.Dialogs
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasmoid
+
+//import org.kde.plasma.plasmoid
 
 // En Plasma 6 las páginas de config deben declarar las propiedades cfg_*
 // que quieran leer/escribir. El sistema las inyecta automáticamente.
@@ -12,31 +13,38 @@ Kirigami.ScrollablePage {
 
     // Propiedades cfg_* requeridas por Plasma 6
     // Plasma inyecta tanto cfg_X como cfg_XDefault — hay que declarar ambas
-    property string cfg_rules:                    ""
-    property string cfg_rulesDefault:             ""
-    property bool   cfg_showNotifications:        true
-    property bool   cfg_showNotificationsDefault: true
-    property bool   cfg_showErrorDetails:         true
-    property bool   cfg_showErrorDetailsDefault:  true
-    property int    cfg_conflictStrategy:         1
-    property int    cfg_conflictStrategyDefault:  1
+    property string cfg_rules: ""
+    property string cfg_rulesDefault: ""
+    property bool cfg_showNotifications: true
+    property bool cfg_showNotificationsDefault: true
+    property bool cfg_showErrorDetails: true
+    property bool cfg_showErrorDetailsDefault: true
+    property int cfg_conflictStrategy: 1
+    property int cfg_conflictStrategyDefault: 1
 
     // Modelo interno de reglas
-    ListModel { id: rulesModel }
+    ListModel {
+        id: rulesModel
+    }
 
     function loadFromConfig() {
-        rulesModel.clear()
-        if (!cfg_rules || cfg_rules === "") return
+        rulesModel.clear();
+        if (!cfg_rules || cfg_rules === "")
+            return;
         try {
-            var arr = JSON.parse(cfg_rules)
-            for (var i = 0; i < arr.length; i++) rulesModel.append(arr[i])
-        } catch(e) { console.warn("MagicFolder configRules: parse error", e) }
+            var arr = JSON.parse(cfg_rules);
+            for (var i = 0; i < arr.length; i++)
+                rulesModel.append(arr[i]);
+        } catch (e) {
+            console.warn("MagicFolder configRules: parse error", e);
+        }
     }
 
     function saveToConfig() {
-        var arr = []
-        for (var i = 0; i < rulesModel.count; i++) arr.push(rulesModel.get(i))
-        cfg_rules = JSON.stringify(arr)
+        var arr = [];
+        for (var i = 0; i < rulesModel.count; i++)
+            arr.push(rulesModel.get(i));
+        cfg_rules = JSON.stringify(arr);
     }
 
     Component.onCompleted: loadFromConfig()
@@ -79,21 +87,19 @@ Kirigami.ScrollablePage {
                     checked: model.enabled
                     enabled: model.destination !== ""
                     onToggled: {
-                        rulesModel.setProperty(index, "enabled", checked)
-                        saveToConfig()
+                        rulesModel.setProperty(index, "enabled", checked);
+                        saveToConfig();
                     }
                     QQC2.ToolTip {
                         visible: ruleSwitch.hovered
-                        text: model.destination === ""
-                            ? i18n("Set up a destination folder first.")
-                            : (ruleSwitch.checked ? i18n("Deactivate") : i18n("Activate"))
+                        text: model.destination === "" ? i18n("Set up a destination folder first.") : (ruleSwitch.checked ? i18n("Deactivate") : i18n("Activate"))
                     }
                 }
 
                 // Ícono de categoría
                 Kirigami.Icon {
                     source: model.icon || "folder-symbolic"
-                    width:  Kirigami.Units.iconSizes.smallMedium
+                    width: Kirigami.Units.iconSizes.smallMedium
                     height: Kirigami.Units.iconSizes.smallMedium
                     opacity: model.enabled ? 1.0 : 0.5
                 }
@@ -110,12 +116,8 @@ Kirigami.ScrollablePage {
                     }
 
                     QQC2.Label {
-                        text: model.destination !== ""
-                            ? model.destination
-                            : i18n("⚠ No destination folder — click Edit")
-                        color: model.destination !== ""
-                            ? Kirigami.Theme.textColor
-                            : Kirigami.Theme.neutralTextColor
+                        text: model.destination !== "" ? model.destination : i18n("⚠ No destination folder — click Edit")
+                        color: model.destination !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.neutralTextColor
                         opacity: model.destination !== "" ? 0.65 : 1.0
                         elide: Text.ElideLeft
                         Layout.fillWidth: true
@@ -142,18 +144,27 @@ Kirigami.ScrollablePage {
                     icon.name: "arrow-up"
                     text: i18n("Go up")
                     enabled: index > 0
-                    onTriggered: { rulesModel.move(index, index - 1, 1); saveToConfig() }
+                    onTriggered: {
+                        rulesModel.move(index, index - 1, 1);
+                        saveToConfig();
+                    }
                 },
                 Kirigami.Action {
                     icon.name: "arrow-down"
                     text: i18n("Lower")
                     enabled: index < rulesModel.count - 1
-                    onTriggered: { rulesModel.move(index, index + 1, 1); saveToConfig() }
+                    onTriggered: {
+                        rulesModel.move(index, index + 1, 1);
+                        saveToConfig();
+                    }
                 },
                 Kirigami.Action {
                     icon.name: "edit-delete"
                     text: i18n("Eliminate")
-                    onTriggered: { rulesModel.remove(index); saveToConfig() }
+                    onTriggered: {
+                        rulesModel.remove(index);
+                        saveToConfig();
+                    }
                 }
             ]
         }
@@ -170,40 +181,41 @@ Kirigami.ScrollablePage {
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
 
         onAccepted: {
-            if (!nameField.text || !patternField.text) return
+            if (!nameField.text || !patternField.text)
+                return;
             var rule = {
-                name:        nameField.text,
-                matchType:   "extension",
-                pattern:     patternField.text,
+                name: nameField.text,
+                matchType: "extension",
+                pattern: patternField.text,
                 destination: destinationField.text,
-                enabled:     destinationField.text !== "",
-                icon:        iconField.text || "folder-symbolic"
-            }
+                enabled: destinationField.text !== "",
+                icon: iconField.text || "folder-symbolic"
+            };
             if (editIndex === -1) {
-                rulesModel.append(rule)
+                rulesModel.append(rule);
             } else {
-                rulesModel.set(editIndex, rule)
+                rulesModel.set(editIndex, rule);
             }
-            saveToConfig()
+            saveToConfig();
         }
 
         function openNew() {
-            editIndex = -1
-            nameField.text = ""
-            patternField.text = ""
-            destinationField.text = ""
-            iconField.text = ""
-            open()
+            editIndex = -1;
+            nameField.text = "";
+            patternField.text = "";
+            destinationField.text = "";
+            iconField.text = "";
+            open();
         }
 
         function openEdit(idx) {
-            editIndex = idx
-            var r = rulesModel.get(idx)
-            nameField.text        = r.name
-            patternField.text     = r.pattern
-            destinationField.text = r.destination
-            iconField.text        = r.icon || ""
-            open()
+            editIndex = idx;
+            var r = rulesModel.get(idx);
+            nameField.text = r.name;
+            patternField.text = r.pattern;
+            destinationField.text = r.destination;
+            iconField.text = r.icon || "";
+            open();
         }
 
         ColumnLayout {
@@ -264,7 +276,7 @@ Kirigami.ScrollablePage {
     FolderDialog {
         id: folderDialog
         onAccepted: {
-            destinationField.text = selectedFolder.toString().replace(/^file:\/\//, "")
+            destinationField.text = selectedFolder.toString().replace(/^file:\/\//, "");
         }
     }
 }
