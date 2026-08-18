@@ -2,16 +2,17 @@ import QtQuick
 import QtQuick.Controls as QQC2
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasmoid
+
+//import org.kde.plasma.plasmoid
 
 Kirigami.ScrollablePage {
 
-    property bool cfg_showNotifications:        true
+    property bool cfg_showNotifications: true
     property bool cfg_showNotificationsDefault: true
-    property bool cfg_showErrorDetails:         true
-    property bool cfg_showErrorDetailsDefault:  true
-    property int  cfg_conflictStrategy:         1
-    property int  cfg_conflictStrategyDefault:  1
+    property bool cfg_showErrorDetails: true
+    property bool cfg_showErrorDetailsDefault: true
+    property int cfg_conflictStrategy: 1
+    property int cfg_conflictStrategyDefault: 1
 
     ColumnLayout {
         spacing: Kirigami.Units.largeSpacing
@@ -29,17 +30,15 @@ Kirigami.ScrollablePage {
             QQC2.ComboBox {
                 Kirigami.FormData.label: i18n("If the file already exists:")
                 // 0 = Omitir, 1 = Mantener ambos (renombrar), 2 = Sobreescribir
-                model: [
-                    i18n("Skip (do not move)"),
-                    i18n("Keep both (rename: [filename]_1.ext)"),
-                    i18n("Overwrite")
-                ]
+                model: [i18n("Skip (do not move)"), i18n("Keep both (rename: [filename]_1.ext)"), i18n("Overwrite")]
                 currentIndex: cfg_conflictStrategy
                 onActivated: cfg_conflictStrategy = currentIndex
             }
         }
 
-        Kirigami.Separator { Layout.fillWidth: true }
+        Kirigami.Separator {
+            Layout.fillWidth: true
+        }
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
@@ -61,7 +60,7 @@ Kirigami.ScrollablePage {
             standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
             onAccepted: {
                 // Clear rules so initRules() seeds defaults on next load
-                plasmoid.configuration.rules = ""
+                plasmoid.configuration.rules = "";
             }
             QQC2.Label {
                 text: i18n("This will remove all custom rules and restore the 9 predefined categories (disabled). Continue?")
